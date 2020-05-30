@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express  = require('express')
 const app = express()
 
@@ -15,7 +16,7 @@ app.post('/login', (req,res) => {
 
     const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN)
 
-    req.json({accessToken : accessToken})
+    res.json({accessToken: accessToken})
 
 })
 
