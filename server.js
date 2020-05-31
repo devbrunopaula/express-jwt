@@ -1,25 +1,33 @@
 require("dotenv").config();
 const express = require("express");
+const mongoose = require('mongoose')
 const app = express();
 
-const jwt = require("jsonwebtoken");
-
+// const jwt = require("jsonwebtoken");
+// const apiIndex = require("./routes/index");
+// Routes Import
+const users = require('./routes/api/users')
 app.use(express.json());
 
-//Import Routes
 
-const apiIndex = require("./routes/index");
 
-app.use("/api", apiIndex);
+// DB Connection
+mongoose.connect(process.env.mongoDb, { useUnifiedTopology: true, useNewUrlParser: true })
+.then( ()=> console.log('DB Connected'))
+.catch( err => console.log(err))
 
-// app.post("/login", (req, res) => {
-//   const username = req.body.username;
-//   const user = { name: username };
+app.use('/api/users', users)
 
-//   const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN);
 
-//   res.json({ accessToken: accessToken });
-// });
+
+
+
+
+
+
+
+
+
 
 const port = process.env.PORT || 3000;
 
