@@ -12,7 +12,11 @@ app.use(express.json());
 
 
 // DB Connection
-mongoose.connect(process.env.mongoDb, { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(process.env.mongoDb, {
+     useUnifiedTopology: true, 
+     useNewUrlParser: true ,
+     useFindAndModify:false
+    })
 .then( ()=> console.log('DB Connected'))
 .catch( err => console.log(err))
 
